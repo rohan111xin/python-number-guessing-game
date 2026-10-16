@@ -1,28 +1,44 @@
 import random
 
-random_number = random.randint(1, 100)
-attempts = 10
-i=0
+play_again = True
 
-while i<attempts:
-  i += 1
-  print(f"Attempts remaning:{attempts-i+1}")
+while play_again:
+    random_number = random.randint(1, 100)
+    attempts = 10
+    i = 0
+    guessed_correctly = False
 
-  guess_number = int(input("Guess the number between 1 to 100:"))
+    while i < attempts:
+        i += 1
+        print(f"Attempts remaining: {attempts - i + 1}")
 
-  if random_number == guess_number:
-    print(f"Congratulation 🥳🎉, you guess the correct number {guess_number}")
-    break
+        guess_number = int(input("Guess a number between 1 and 100: "))
 
-  elif random_number > guess_number:
-    print(f"The number is too Low! 🤔 {guess_number}")
+        if random_number == guess_number:
+            print(f"Congratulations! 🎉 You guessed {random_number}!")
+            guessed_correctly = True
+            break
 
-  elif random_number < guess_number:
-    print(f"The number is too High! 🤔 {guess_number}")
+        elif random_number > guess_number:
+            print(f"Too low! 🤔 Your guess: {guess_number}")
 
-  else:
-    print("Invalid input 😁")
+        else:
+            print(f"Too high! 🤔 Your guess: {guess_number}")
 
-  if i==attempts:
-    print(f"Better luck next time 🥺, {attempts} left")
-    print(f"The correct number is {random_number}")
+    if not guessed_correctly:
+        print("Better luck next time! 🥺")
+        print(f"The correct number was {random_number}.")
+
+    while True:
+        play = input("Play again? Press 1 for Yes or 0 for No: ")
+
+        if play == "1":
+            break
+
+        elif play == "0":
+            print("Thank you for playing! 😊")
+            play_again = False
+            break
+
+        else:
+            print("Invalid choice! Please enter 1 or 0.")
